@@ -4,8 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
-from services import convert_ram, convert_price, convert_storage, convert_processor, save_model, compare_models
-import joblib
+from L3.services import convert_ram, convert_price, convert_storage, convert_processor, save_model, compare_models
 
 
 """
@@ -67,5 +66,7 @@ mse_ne = mean_squared_error(y_test_ne, y_pred_ne)
 Model compare
 -------------------------------------------------------------------------------------------------------------
 """
+compare_models(mse, mse_ne)
+
 print(f'Mean Squared Error (Gradient Descent): {mse}')
 print(f'Mean Squared Error (Normal Equation): {mse_ne}')
