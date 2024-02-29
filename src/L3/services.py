@@ -44,7 +44,7 @@ def convert_processor(value: str) -> str:
 def compare_models(mse_gd: float, mse_ne: float) -> None:
     print(f'Mean Squared Error (Gradient Descent): {mse_gd}')
     print(f'Mean Squared Error (Normal Equation): {mse_ne}')
-    if mse_gd > mse_ne:
+    if mse_gd < mse_ne:
         print('The model with Gradient Descent is better than the model with Normal Equation')
     else:
         print('The model with Normal Equation is better than the model with Gradient Descent')
