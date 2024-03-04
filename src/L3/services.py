@@ -1,5 +1,5 @@
 import joblib
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge
 
 
 def convert_storage(storage: str) -> float:
@@ -25,8 +25,8 @@ def convert_price(price: str) -> float:
 
 
 def convert_processor(value: str) -> str:
-    if value.startswith('Core'):
-        return 'Core'
+    if value.startswith('Core') or value.startswith('Celeron'):
+        return 'Intel'
     elif value.startswith('Ryzen'):
         return 'Ryzen'
     elif value.startswith('MediaTek '):
@@ -50,5 +50,21 @@ def compare_models(mse_gd: float, mse_ne: float) -> None:
         print('The model with Normal Equation is better than the model with Gradient Descent')
 
 
-def save_model(model: LinearRegression, file_name: str) -> None:
+def convert_touch_screen(value: str) -> bool:
+    if value == 'No':
+        return False
+    else:
+        return True
+
+
+def convert_operating_system(value: str) -> str:
+    if 'windows' in value.lower():
+        return 'Windows'
+    elif 'macos' in value.lower() or 'mac os' in value.lower():
+        return 'Mac OS'
+    else:
+        return value
+
+
+def save_model(model: LinearRegression | Ridge, file_name: str) -> None:
     joblib.dump(model, file_name)
